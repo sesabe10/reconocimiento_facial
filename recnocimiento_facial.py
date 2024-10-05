@@ -16,9 +16,9 @@ while True:
 
     faces = faceCascade.detectMultiScale(
         gray,
-        scaleFactor = 1.1,
-        minNeighbors = 5,
-        minSize = (25, 25),
+        scaleFactor = 1.1, # redución de la imagen es esto caso del 10%
+        minNeighbors = 5, # vecinos mas cercanos 
+        minSize = (25, 25), # define el rango del tamaño del objecto
         flags = cv.CASCADE_SCALE_IMAGE
     )
 
@@ -26,9 +26,10 @@ while True:
     for (x, y, w, h) in faces:
         cv.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
 
-        roi_color = img[y:y+h, x:x+w]
+        roi_color = img[y:y+h, x:x+w]  # ROI(Region Of Interest)
         roi_gray = gray[y:y+h, x:x+w]
 
+        #detectando ojos
         eyes = eye_cascade.detectMultiScale(roi_gray)
         for (ex,ey,ew,eh) in eyes:
             cv.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
