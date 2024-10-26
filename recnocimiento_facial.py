@@ -11,6 +11,8 @@ while True:
     # Leer un frame del video
     ret, img = cap.read()
 
+    img = cv.flip(img, 1)
+
     # Convertir el img a escala de grises
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
@@ -18,7 +20,7 @@ while True:
         gray,
         scaleFactor = 1.1, # redución de la imagen es esto caso del 10%
         minNeighbors = 5, # vecinos mas cercanos 
-        minSize = (25, 25), # define el rango del tamaño del objecto
+        minSize = (30, 30), # define el rango del tamaño del objecto
         flags = cv.CASCADE_SCALE_IMAGE
     )
 
